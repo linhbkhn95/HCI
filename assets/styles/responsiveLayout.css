@@ -1,0 +1,52 @@
+/* Dành cho điện thoại */
+@media all and (max-width: 800px) {
+  #inner45-btn{width: 40%;}
+  .inner45{width: 100%;float: left;height: auto;padding: 10px;}
+  .inner45 .btn{width: 30%;}
+  .inner55{width: 100%; float: left;height: auto;padding: 10px;font-size: 12px; font-weight: 100;}
+  .inner55 .btn{float: left;}
+  .inner55-title{text-align: center;}
+  .inner55-default .col-xs-8,.col-xs-4,.col-xs-7{width: 100%;}
+  #tab2 .col-xs-2{width: 70%;}
+  .inner55-mua,.inner55-ban,.inner55-default{height: 250px; overflow: visible;;}
+  .inner55 .inner55-mua .col-xs-12{height: auto;}
+  .inner55 .inner55-ban .col-xs-12{height: auto;}
+  .inner45-DauTuDinhKy{width: 100%;}
+  .inner45-DauTuDinhKy .btn{float: left;margin:5% 5% 10px 12% !important;}
+  .inner45-DauTuDinhKy .col-xs-2,.col-xs-1,.col-xs-3{ width: 80%;}
+  .inner45-DauTuDinhKy .col-xs-offset-1{width: 55%; margin-left: 0px;}
+  .inner45-DauTuDinhKy .react-datepicker-wrapper .form-control{width: 82%;}
+  .inner .col-xs-1{width: 28%;}
+  .inner .btn{float:left;}
+  .time-countdown .col-xs-3{width: 25%;}
+  .respon{width: 100%; height: auto; float: left;}
+  .respon h5{width: 12%;}         .respon .col-xs-2{width: 28%;}
+  .inner55-default .col-xs-offset-1{margin: 0%;}
+  .col-xs-6{width: 55%;}
+  .tab-datlenh h5{width: auto;min-width: 60px;}
+}
+body{ background: #fff;}
+
+/*Ipad ngang(1024 x 768)*/
+@media screen and (max-width: 1024px){
+    /*body{ background: black;}*/
+}
+/*Ipad dọc(768 x 1024)*/
+@media screen and (max-width: 768px){
+    /*body{ background: red;}*/
+}
+/*Tablet nhỏ(480 x 640)*/
+@media screen and (max-width: 480px){
+  //    body{ background: green;}
+}
+/*Iphone(480 x 640)*/
+@media screen and (max-width: 320px){
+     /*body{ background: blue;}*/
+     .menu .navbar-default{
+       padding-left: 0px;
+     }
+}
+/*Smart phone nhỏ*/
+@media screen and (max-width: 240px){
+       /*body{ background: yellow;}*/
+}

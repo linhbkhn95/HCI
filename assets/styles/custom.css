@@ -1,0 +1,79 @@
+/**********
+ * COLORS
+ *********/
+ $space: 2.5rem;
+@white: #FFFFFF;
+@green: #9EC03B;
+@orange: #F48744;
+@blue: #189ECA;
+@gray: #777574;
+@lightGray: #ececec;
+@black: #1C1C1C;
+@darkBlue: #106E8D;
+@darkGray: #4A4A4A;   // paragraphs
+@red: #D16565; // error
+
+body {
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+.jumbotron {
+	text-align: center;
+
+}
+.body-style{
+	margin-top: 140px !important;
+}
+.jumbotron h2 {
+  font-size: 1.5em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: gray;
+}
+
+.container {
+  .footer {
+    width: 25%;
+  }
+}
+
+/**/
+
+
+
+
+.page-title{
+  margin-top: $space;
+  margin-bottom: $space;
+}
+
+.notification{
+  background-color: $warning-color;
+  margin: 0px;
+  padding: 6px !important;
+  text-align: center;
+}
+
+.p-notification{
+  margin-bottom: 0px;
+}
+
+.homepage {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+

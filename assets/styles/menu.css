@@ -1,0 +1,110 @@
+.menu-tree{
+  /*width: 21%;
+  float: left;
+  padding: 10px;
+  /* min-width: 279px; */
+/*  min-height: 650px;
+  background-color: #f8f8f8;*/
+}
+.menu{
+  /*background-color: rgba(243, 242, 242, 0.39);*/
+  background-color: #f8f8f8;
+  border-color: #e7e7e7;
+  padding-top: 50px;
+
+}
+.menu .navbar-default{
+  background-color: rgba(243, 242, 242, 0.39) !important;
+  width: 100%;
+  padding-left: 96px;
+  z-index: 9;
+position: fixed;
+}
+.navbar-toggle-menu {
+    position: relative;
+    float: left;
+    padding: 9px 10px;
+    margin-top: 8px;
+    margin-right: 15px;
+    margin-bottom: 8px;
+    background-color: red;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.list-menu-item{
+  padding-left: 42px;
+}
+
+
+.sidebar-nav{
+
+}
+
+.list-menu-item li{
+  padding: 7px !important;
+}
+
+.list-menu-item li a:hover{
+  text-decoration: none;
+
+}
+.list-menu-item li:hover{
+  background-color:rgba(225, 234, 225, 0.94);
+}
+.sidebar-nav .navbar ul> li> li a:hover {
+  background-color: #428bca;
+  color: white;
+}
+
+.arrow {
+    font-family: FontAwesome;
+    content: "\f078";
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    vertical-align: middle;
+    float: right;
+  }
+
+.custom-ul-li-ul{
+  font-size: 12px;
+}
+
+  /************************** Reponesive MenuNgang ********************************************/
+.navbar-toggle .icon-bar {
+    width: 22px;
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+    }
+    .navbar-default .navbar-toggle {
+    position:relative;
+    padding-top:10px;
+    z-index:100
+    }
+    .navbar-toggle .top-bar {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform-origin: 10% 10%;
+    -webkit-transform-origin: 10% 10%;
+    }
+    .navbar-toggle .middle-bar {
+    opacity: 0;
+    }
+    .navbar-toggle .bottom-bar {
+    transform: rotate(-45deg);
+    transform-origin: 10% 90%;
+    -webkit-transform: rotate(-45deg);
+    -webkit-transform-origin: 10% 90%;
+    }
+    .navbar-toggle.collapsed .top-bar {
+    transform: rotate(0);
+    -webkit-transform: rotate(0);
+    }
+    .navbar-toggle.collapsed .middle-bar {
+    opacity: 1;
+    }
+    .navbar-toggle.collapsed .bottom-bar {
+    transform: rotate(0);
+    -webkit-transform: rotate(0);
+    }

@@ -1,0 +1,73 @@
+.th-group {
+  text-align: center !important;
+  /*background-color: rgba(234, 139, 40, 0.88) !important ;*/
+  font-size: 17px !important;
+}
+
+.form-search {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.th-item {
+  font-size: 11px;
+}
+
+.th-item-lenh {
+  background-color: rgba(240, 173, 78, 0.69);
+}
+
+.th-item-tien {
+  background-color: rgb(196, 213, 228);
+}
+
+.th-item-trangthai {
+  background-color: rgb(243, 215, 187);
+}
+
+.tbody-doichieulenh {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tr-compare {
+  font-size: 12px;
+  font-weight: 300;
+  text-align: center;
+}
+
+.tr-cmd {
+  border: 1px ridge;
+  text-align: center;
+}
+.btn-row{
+  font-size: 9px;
+  margin-left: 5px;
+  /* padding: 4px 4px 4px; */
+  padding: 2px;
+}
+.tr-compare td{
+  padding: 1px !important;
+}
+.tr-parent-cmd {
+  font-weight: bold;
+}
+
+.title-modal-trasoat {
+  padding: 5px;
+  font-size: 21px;
+  background: rgba(197, 204, 204, 0.42);
+  width: 98%;
+  border-radius: 5px;
+  color: #19a8bf;
+}
+
+.custom-btn-boostrap {
+  font-size: 12px;
+  padding: 5px;
+}
+
+.header-cmd {
+  font-size: 15px;
+  color: #149aa9;
+}
