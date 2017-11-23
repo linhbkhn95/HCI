@@ -15,7 +15,7 @@ import jwtDecode from 'jwt-decode';
 import translate from 'app/utils/i18n/Translate.js';
 import TableBootstrap from 'app/utils/TableBootstrap.js';
 import ReactTableBootstrap from 'app/utils/ReactTableBootstrap.js';
-import Inputvalidate from 'app/utils/Inputvalidate.js';
+//import Inputvalidate from 'app/utils/Inputvalidate.js';
 import PropTypes from 'prop-types';
 import MutiLanguage from './MutiLanguage.js';
 class Login extends React.Component{

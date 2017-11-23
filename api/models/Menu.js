@@ -6,13 +6,30 @@
  */
 
 module.exports = {
-
+  autoCreatedAt: false,
+  autoUpdatedAt: false,
+  autoPK: false,
   attributes: {
-         role:{
-           type:'string'
-         },
-         data:{
-            type:'array'
-         }
+        //  role:{
+        //    type:'string'
+        //  },
+        //  data:{
+        //     type:'array'
+        //  }
+        id: {
+          columnName: "id_menu",
+          type: "integer",
+          primaryKey: true,
+          autoIncrement: true,
+          require: true,
+          unique: true
+        },
+        name: {
+          columnName: "name",
+          type: "string",
+          // require: true,
+          // unique: true
+        }
+        
   }
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 var GeneralInformation = require('./components/GeneralInformation');
 var UyQuyenInformation = require('./components/UyQuyenInformation');
-var InfFATCA  = require('./components/InfFatca.js');
+var InfFATCA  = require('./components/InfFATCA.js');
 
 module.exports = class AddCreateAccountNDT extends React.Component{
   constructor(props){

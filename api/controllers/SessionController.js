@@ -238,6 +238,8 @@ module.exports = {
 		     //var results =Object.keys(data).map(function(k) { return data[k] });
 				 try{
 					   res.send(menu.data);
+					 //res.send([]);
+					 
 				 }catch(e){
             sails.log.error(e);
 						res.send([]);

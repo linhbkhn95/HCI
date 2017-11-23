@@ -32,7 +32,8 @@ module.exports = function notFound (data, options) {
     sails.log.verbose('Sending 404 ("Not Found") response: \n',data);
   }
   else sails.log.verbose('Sending 404 ("Not Found") response');
-
+  
+  res.view('homepage');
   // Only include errors in response if application environment
   // is not set to 'production'.  In production, we shouldn't
   // send back any identifying information about errors.

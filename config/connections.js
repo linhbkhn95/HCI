@@ -28,13 +28,21 @@ module.exports.connections = {
   * Installed by default.                                                    *
   *                                                                          *
   ***************************************************************************/
-  // localDiskDb: {
-  //   adapter: 'sails-disk'
-  // },
+  localDiskDb: {
+    adapter: 'sails-disk'
+  },
   redis: {
     adapter: "sails-redis",
     port: 6379,
     host: 'localhost'
+  },
+  mysql: {
+    adapter    : 'sails-mysql',
+    host      : 'localhost',
+    port      : 3306,
+    user      : 'root',
+    password  : '1234',
+    database  : 'quanlycongtac'
   }
   /***************************************************************************
   *                                                                          *

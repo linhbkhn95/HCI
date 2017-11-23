@@ -87,11 +87,22 @@ module.exports = {
 		}
 
 	},
-	'addAccount':function(req,res,next){
-		   var {ten} = req.body;
+	'add':function(req,res){
+		   var data ={id:2,name:'Xuân Trinh',email:'a',role:'nhanvien'}
+
+           console.log('add user');
+		   User.create(data).exec(function(err,au){
+			if(err){
+
+		      res.send(401,"lỗi thêm authorize");
+
+			 //return  res.send(err)
+			}
+
+			res.send(au);
 
 
-
+		});
 
 
 

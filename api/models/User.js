@@ -6,25 +6,24 @@
  */
 
 module.exports = {
-
+  // autoCreatedAt: false,
+  // autoUpdatedAt: false,
+  autoPK: false,
   attributes: {
-        ten:{
-           type:"string"
+        id:{
+           type:"integer"
 
         },
-        username:{
+        name:{
            type:"string"
         },
-        password:{
+        email:{
            type:"string"
         },
         role:{
            type:"string"
-        },
-        online:{
-          type:'boolean',
-          defaultsTo:false
         }
+       
 
 
 
