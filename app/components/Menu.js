@@ -21,6 +21,22 @@ class Menu extends React.Component{
     )
   }
 }
+renderMenuGroup(item){
+       console.log(item);
+        if(item.link===null){
+          return(
+            <a href="#" data-toggle="collapse"  data-target={"#"+item.parentId}  className="collapsed">
+            <span className=""></span>{item.GroupMenu}<span className="caret pull-right"></span></a>
+          );
+        }
+        else{
+          return(
+            <a href="#" data-toggle="collapse"  data-target={"#"+item.parentId}  className="collapsed">
+            <span className=""></span><NavLink to={item.link}>{item.GroupMenu}</NavLink><span className="caret pull-right"></span>
+            </a>
+          )
+        }
+}
   render(){
     var style = {
       height:'auto'
@@ -43,9 +59,10 @@ class Menu extends React.Component{
 
 
               <li className="divider ">
-                <a href="#" data-toggle="collapse"  data-target={"#"+item.parentId}  className="collapsed">
+                {/* <a href="#" data-toggle="collapse"  data-target={"#"+item.parentId}  className="collapsed">
                 <span className=""></span>{item.GroupMenu}<span className="caret pull-right"></span>
-                </a>
+                </a> */}
+                {that.renderMenuGroup(item)}
               <ul className="collapse list-menu-item" style={style}  id={item.parentId} >
                   {that.renderListMenuItem(item.listItem)}
               </ul>

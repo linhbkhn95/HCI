@@ -3,7 +3,7 @@ import setAuthorizationToken from 'app/utils/setAuthorizationToken';
 // import jwtDecode from 'jwt-decode';
 var SET_CURRENT_USER = "SET_CURRENT_USER";
 export function setCurrentUser(user) {
-   console.log(user);
+   console.log('set user');
   return {
     type: SET_CURRENT_USER,
     user

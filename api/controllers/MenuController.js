@@ -8,30 +8,51 @@
 module.exports = {
     addWithRole:function(req,res){
         var data= {
-             role:"nhanvien",
+             role:"kt",
              data:[	
-                {parentId:1,GroupMenu:"Home",
+                {parentId:1,GroupMenu:"Trang chủ", link:"/home",
                 listItem:[
-                    {id: 1, NameMemu: 'Tài khoản(mở/sửa)', link: '/CreateAccountNDT',Component:"CreateAccountNDT"}
               
 
                     ]},
-                {parentId:2,GroupMenu:"Đăng kí công tác",
+                {parentId:2,GroupMenu:"Quản lý công tác",
                 listItem:[
-                {id: 1, NameMemu: 'Màn hình đặt lệnh', link: '/datlenh',Component:"Home"},
-                {id: 2, NameMemu: 'Đối chiếu lệnh-tiền', link: '/cmd',Component:"Account"}
+                {id: 1, NameMemu: 'Đăng kí đi công tác', link: '/registerBusiness',Component:"Home"},
+                {id: 2, NameMemu: 'Danh sách công tác', link: '/listBusiness',Component:"Account"},
+                {id: 3, NameMemu: 'Xin thêm chi phi công tác', link: '/action/addBusiness',Component:"Account"},
+              
+                {id: 4, NameMemu: 'Duyệt đăng kí công tác ', link: '/browseWork',Component:"Account"},
+                {id: 5, NameMemu: 'Upload hóa đơn ', link: '/actionBusiness/uploadOrder',Component:"Account"}
+                
+                
 
                 ]},
-                        {parentId:3,GroupMenu:"Thông báo",
-                            listItem:[
-                        {id: 1, NameMemu: 'Đầu tư định kỳ', link: '/dautudinhky',Component:"Home"}
-                        ]}
-                    ]
+                {parentId:3,GroupMenu:"Quản lý phản hồi Công tác",
+                    listItem:[
+                         {       id: 1, NameMemu: 'Danh sách phản hồi', link: '/listResponse',Component:"Home"}
+                ]},
+                     
+              
+                
+                 {parentId:3,GroupMenu:"Tra cứu",
+                      listItem:[{  id: 1, NameMemu: 'người sủ dụng', link: '/search/person',Component:"Home"},
+                             {  id: 1, NameMemu: 'Dự án', link: '/search/project',Component:"Home"}
+                                
+                  ]},
+                  {parentId:3,GroupMenu:"Thống kê/ Báo cáo",
+                  listItem:[{  id: 1, NameMemu: 'Thống kê', link: '/statistical',Component:"Home"}
+                        
+                            
+                 ]}
+                ]
+                 
+              
+                    
                   
               
                 
         }
-        Menu.create(data).exec(function (err, menu) {
+        Menu.create({role:'kt',data_menu:JSON.stringify(data.data)}).exec(function (err, menu) {
             if (err) {
                  
                  return res.json(err.status, {err: err});
@@ -49,7 +70,7 @@ module.exports = {
         var role = req.body.role;
         
          
-         Menu.findOne({role:role}).exec(function(err,menu){
+         Menu.findOne({role:"nv"}).exec(function(err,menu){
                 if(err){
                     console.log("fail");
                     return  res.send("fail");

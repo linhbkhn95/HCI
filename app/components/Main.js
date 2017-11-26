@@ -34,14 +34,15 @@ class Main extends React.Component{
   }
   componentDidMount(){
     var {dispatch,auth} = this.props;
-   //  if(auth.isAuthenticated){
+     console.log(auth);
+     if(auth.isAuthenticated){
+
+      console.log('getmeu tu server');
 
 
-
-
-            axios.get('/session/getMenu',{username:auth.username})
+            axios.post('/session/getMenu',{role:auth.user.role})
             .then(res => {
-              console.log(res.data);
+              console.log('dataaaaaaaaaaaaaaa');
                 dispatch(actionMenu.loadMenu(res.data));
             })
             .catch(err => console.log(err));
@@ -49,11 +50,11 @@ class Main extends React.Component{
 
 
       }
-  //  }
+    }
 }
 
 module.exports = connect(function(state){
   return {notification: state.notification,
-          auth:state.authenticate
+          auth:state.auth
          }
 })(Main);

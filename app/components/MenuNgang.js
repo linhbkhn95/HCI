@@ -22,6 +22,22 @@ class MenuNgang extends React.Component{
     )
   }
 }
+renderMenuGroup(item){
+  console.log(item);
+   if(item.link===null){
+     return(
+       <a href="#" data-toggle="collapse"  data-target={"#"+item.parentId}  className="collapsed">
+       <span className=""></span>{item.GroupMenu}<span className="caret pull-right"></span></a>
+     );
+   }
+   else{
+     return(
+       <a href="#" data-toggle="collapse"  data-target={"#"+item.parentId}  className="collapsed">
+       <span className=""></span><NavLink to={item.link}>{item.GroupMenu}</NavLink><span className="caret pull-right"></span>
+       </a>
+     )
+   }
+}
   render(){
     var style = {
       height:'auto'
@@ -53,6 +69,7 @@ class MenuNgang extends React.Component{
 
 
                   <li className="dropdown">
+                        {/* {that.renderMenuGroup(item)} */}
                        <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{item.GroupMenu} <span className="glyphicon "></span><span className="caret"></span></a>
                        <ul className="dropdown-menu custom-ul-li-ul " role="menu">
                            {that.renderListMenuItem(item.listItem)}

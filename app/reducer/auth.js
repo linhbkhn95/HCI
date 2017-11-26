@@ -1,5 +1,5 @@
 // import { SET_CURRENT_USER } from '../actions/types';
-//import isEmpty from 'lodash.isEmpty';
+import isEmpty from 'lodash.isempty';
 
 var data = {
   isAuthenticated: false,
@@ -8,13 +8,13 @@ var data = {
 
 
  var auth = (state = data, action) => {
-   console.log('dmmsádadadad');
-    c//onsole.log(!isEmpty(action.user));
+   console.log('set user');
+    //onsole.log(!isEmpty(action.user));
   switch(action.type) {
 
     case "SET_CURRENT_USER":
       return {
-        isAuthenticated: false,
+        isAuthenticated: !isEmpty(action.user),
         user: action.user
       };
     default:

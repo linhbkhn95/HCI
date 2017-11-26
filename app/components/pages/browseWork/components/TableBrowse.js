@@ -4,6 +4,8 @@ import axios from 'axios';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import ModalDelay from './ModalDelay.js';
+import ModalBrowse from './ModalBrowse.js';
+import {connect} from 'react-redux';
 //
 // const requestData = (pageSize, page, sorted, filtered) => {
 //   return new Promise((resolve, reject) => {
@@ -11,6 +13,7 @@ var ListStatus = React.createClass({
     getInitialState(){
        return{
            Data     : []
+           
        }
     },
     componentDidMount(){
@@ -48,58 +51,95 @@ class TableDemo extends React.Component {
     super();
     this.state = {
         showModalDelay:false,
+        showBrowse:false,
+        id_browse:99,
+        id_delay:111,
       data: [
-          {
-              nameProject:"HCI", namePerson:"Linh Trịnh", totalCost:"170,000,000"
-          },
-          {
-            nameProject:"PTMNCN", namePerson:"Nhỏ ngọc", totalCost:"15,000,000"
-         }
+        //   {
+        //       nameproject:"HCI", nameuser:"Linh Trịnh", cost:"170,000,000"
+        //   },
+        //   {
+        //     nameproject:"PTMNCN", nameuser:"Nhỏ ngọc", cost:"15,000,000"
+        //  }
 
       ],
       pages: null,
       page:1,
       pageSize:5,
-      loading: false
+      loading: true
     };
     this.fetchData = this.fetchData.bind(this);
   }
 
-  access(){
-    console.log('dy');
+access(){
+    
   
-      
+  axios.post('/business/delay_browse',{business_id:this.state.id_delay})
+  .then((res)=>{
+     console.log(res.data);
+  })
+  this.removeData(this.state.id_delay);
+    
+  this.setState({showModalDelay:false});
     this.setState({showModalDelay:false});
 }
 closeModalDelay(){
     this.setState({showModalDelay:false});
 }
-showModalDelay(){
-    this.setState({showModalDelay:true});
+showModalDelay(row){
+    this.setState({showModalDelay:true,id_delay:row.original.business_id});
     console.log('show modaldelay');
  //   this.props.dispatch(removeCart(productId));
  }
+
+
+ accessBrowse(){
+  axios.post('/business/access_browse',{business_id:this.state.id_browse,role:this.props.user.role})
+  .then((res)=>{
+     console.log(res.data);
+  })
+  this.removeData(this.state.id_browse);
+    
+  this.setState({showModalBrowse:false});
+}
+closeModalBrowse(){
+  this.setState({showModalBrowse:false});
+}
+showModalBrowse(row){
+  this.setState({showModalBrowse:true,id_browse:row.original.business_id});
+  console.log(row.original.business_id);
+  
+//   this.props.dispatch(removeCart(productId));
+}
+removeData(business_id){
+  console.log("vao remove row")
+  var index=this.state.data.map(function(x){ return x.business_id; }).indexOf(business_id);
+  
+  this.state.data.splice(index,1);
+  this.setState({data:this.state.data})
+}
   fetchData(state, instance) {
     // Whenever the table model changes, or the user sorts or changes pages, this method gets called and passed the current table model.
     // You can set the `loading` prop of the table to true to use the built-in one or show you're own loading bar if you want.
     this.setState({ loading: false });
     var that =this;
-    console.log(state);
-    console.log(state.filtered);
-    console.log(state.sorted);
+    console.log('vao fetch');
+    // console.log(state);
+    // console.log(state.filtered);
+    // console.log(state.sorted);
     // Request the data however you want.  Here, we'll use our mocked service we created earlier
-    //  axios.post('/userindex/search',{pagesize:state.pageSize,page:state.page+1,keySearch:state.filtered,sortSearch:state.sorted}
+     axios.post('/business/getlist_needbrowse',{role:this.props.user.role})
 
-    // ).then(res => {
-    //   console.log(res.data);
-    //   // Now just get the rows of data to your React Table (and update anything else like total pages or loading)
-    //   that.setState({
-    //     data: res.data.data,
-    //     pages: res.data.numPerPage,
-    //     loading: true
-    //   });
-    //   console.log(that.state);
-    // });
+    .then(res => {
+       console.log(res.data);
+      // Now just get the rows of data to your React Table (and update anything else like total pages or loading)
+      that.setState({
+        data: res.data,
+      
+        loading: false
+      });
+      console.log(that.state);
+    });
   }
  fn(shtk){
     console.log('xoa');
@@ -150,19 +190,19 @@ showModalDelay(){
             },
             {
               Header:props =><div  className=" header-react-table">Tên dự án</div>,
-              id: "shtk",
+               id: "business_id",
 
-              accessor: d => d.nameProject
+              accessor: d => d.nameproject
             },
          
             {
               Header:props =><div  className=" header-react-table">Chi phí dự kiến</div>,
-              accessor: "totalCost"
+              accessor: "cost"
 
             },
             {
               Header:props =><div className=" header-react-table">Người phụ trách</div>,
-              accessor: "namePerson"
+              accessor: "nameuser"
 
             },
             {
@@ -172,8 +212,8 @@ showModalDelay(){
                           sortable:false,
                           Cell: (row) => (
                            <div style={{textAlign:'center'}}>
-                              <button style={{fontSize:'12px'}}  className="btn btn-primary">Phê duyệt</button>
-                              <button onClick={that.showModalDelay.bind(this)}  style={{fontSize:'12px',marginLeft:"2px"}} className="btn btn-default">Từ chối</button>
+                              <button onClick={that.showModalBrowse.bind(this,row)} style={{fontSize:'12px'}}  className="btn btn-primary">Phê duyệt</button>
+                              <button onClick={that.showModalDelay.bind(this,row)}  style={{fontSize:'12px',marginLeft:"2px"}} className="btn btn-default">Từ chối</button>
                            </div>
             
                          ),
@@ -223,10 +263,11 @@ showModalDelay(){
         />
         <br />
         <ModalDelay show={this.state.showModalDelay} onHide={that.closeModalDelay.bind(this)} access ={this.access.bind(this)} />
+        <ModalBrowse show={this.state.showModalBrowse} onHide={that.closeModalBrowse.bind(this)} access ={this.accessBrowse.bind(this)} />
 
       </div>
     );
   }
 }
-module.exports  = TableDemo;
+module.exports  = connect(function(state){return {user:state.auth.user}})(TableDemo);
     //      onChange={this.fetchData} // Request new data when things change

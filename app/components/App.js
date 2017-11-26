@@ -52,6 +52,7 @@ var UploadBusiness = require('app/components/pages/actionBusiness/UploadBusiness
 
 var AddBusiness = require('app/components/pages/actionBusiness/AddBusiness.js');
 
+var ChangePassword = require('app/components/pages/user/components/ChangePassword.js');
 
 import Repos from 'Repos';
 import jwt from 'jsonwebtoken';
@@ -59,6 +60,14 @@ import jwtDecode from 'jwt-decode';
 
 import {login,logout}  from 'app/action/actionAuthenticate.js';
 import { request } from 'http';
+import {setCurrentUser} from 'app/action/authActions.js';
+
+
+if(localStorage.jwToken){
+  console.log('reload data');
+ // setAuthorizationToken(localStorage.jwToken);
+  store.dispatch(setCurrentUser(jwtDecode(localStorage.jwToken)));
+}
  class App extends React.Component{
 
 // require('style-loader!css-loader!foundation-sites/dist/css/foundation.min.css');
@@ -66,9 +75,8 @@ import { request } from 'http';
 // $(document).ready(() => $(document).foundation());
      componentDidMount(){
        if(localStorage.jwToken){
-           console.log('cssssssssssssssssssssssssssmm');
-         //  setAuthorizationToken(localStorage.jwToken);
-           store.dispatch(login(jwt.decode(localStorage.jwToken).username));
+          //setAuthorizationToken(localStorage.jwToken);
+         //  store.dispatch(login(jwt.decode(localStorage.jwToken).username));
          }
      }
      render(){
@@ -86,6 +94,7 @@ import { request } from 'http';
 
                       <Route   path="/users/procfile" component={UserProcfile}/>
                       <Route   path="/action/addBusiness" component={AddBusiness}/>
+                      <Route   path="/account/changePass" component={ChangePassword}/>
 
                       <Route   path="/statistical" component={Statistical}/>
                       {/* <Route  path="/CreateAccountNDT" component={requireAuth(AddCreateAccountNDT,['me@gmail.com'])} /> */}

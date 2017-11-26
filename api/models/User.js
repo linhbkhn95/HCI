@@ -6,24 +6,40 @@
  */
 
 module.exports = {
-  // autoCreatedAt: false,
-  // autoUpdatedAt: false,
-  autoPK: false,
+  autoCreatedAt: false,
+  autoUpdatedAt: false,
+   autoPK: false,
   attributes: {
-        id:{
-           type:"integer"
+      
+          id: {
+            columnName: "user_id",
+            type: "integer",
+            primaryKey: true,
+            autoIncrement: true,
+            require: true,
+            unique: true
+          },
 
-        },
+        
         name:{
-           type:"string"
+           type:"text"
         },
         email:{
            type:"string"
         },
+        avatar:{
+          type:"string"
+        },
+        birthday:{
+          type:"string"
+        },
+           
         role:{
            type:"string"
+        },
+        password:{
+          type:"string"
         }
-       
 
 
 

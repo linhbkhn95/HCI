@@ -5,6 +5,12 @@ class ModalDeleteProduct extends React.Component{
     access(){
       console.log('đồng ý');
       this.props.access();
+      let business_id;
+      let data_respone =this.refs.data_respone.value;
+      let userid;
+
+      
+      
     }
     close(){
         this.props.onHide();
@@ -23,7 +29,7 @@ class ModalDeleteProduct extends React.Component{
                     <div className="col-md-8">
                 
                     {/* <FormControl componentClass="textarea" rows={2} maxLength={4000} placeholder="Description"/> */}
-                        <textarea className="form-control" placeholder="nhập lý do từ chối để gửi cho cán bộ đăng kí đi công tác" rows="3" ></textarea>
+                        <textarea ref="data_respone" lassName="form-control"  rows="3" ></textarea>
                     </div>
 
           </div>

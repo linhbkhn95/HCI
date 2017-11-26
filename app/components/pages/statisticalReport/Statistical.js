@@ -5,7 +5,8 @@ import 'react-select/dist/react-select.css';
 import Calendar from 'react-input-calendar'
 import DatePicker from 'react-date-picker';
 import {FormControl} from 'react-bootstrap';
-
+import ReChart from './components/ReChart.js';
+import {NavLink,Route} from 'react-router-dom';
 const getOptions = (input) => {
     console.log(input);
     return fetch(`/users/${input}.json`)
@@ -29,14 +30,21 @@ class RegisterBusiness extends React.Component{
       
                <div className="panel-body">
                     <div className="browser-work">
-                        <div className="col-md-12">
-                            <div className="col-md-2">
-                            <ul className="list-group">
-                                            <li className="list-group-item disabled">Thống kê</li>
-                                            <li className="list-group-item">Dự án</li>
-                                            <li className="list-group-item">Chi phí</li>
+                        <div className="col-md-12 row">
+                            <div style={{paddingTop:"146px"}} className="col-md-2 row">
+                                <ul className="list-group row">
+                                            <li className="list-group-item active">Thống kê</li>
+                                            <li className="list-group-item"><NavLink to="/statistical/project">Dự án</NavLink></li>
+                                            <li className="list-group-item"><NavLink to="/statistical/person">Nhân viên</NavLink></li>
                                             
-                            </ul>
+                                 </ul>
+                            </div>
+                            <div  className="col-md-10">
+                                    {this.props.children}
+                                    <Route exact path="/statistical/project" component={ReChart} />
+                                    <Route exact path="/statistical/" component={ReChart} />
+
+                                    {/* <ReChart /> */}
                             </div>
                         </div>
                     </div>

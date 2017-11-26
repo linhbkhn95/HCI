@@ -216,7 +216,8 @@ module.exports = {
 		// 	]}
 		//
 		// ];
-        Menu.findOne({role:'nhanvien'}).exec(function(err,menu){
+		console.log(req.body);
+        Menu.findOne({role:req.body.role}).exec(function(err,menu){
           console.log(menu);
 		// CachedLookup.loadMenu("admin",function(err,data){
 		// 	var retArray = [];
@@ -237,7 +238,7 @@ module.exports = {
 	//	console.log(data);
 		     //var results =Object.keys(data).map(function(k) { return data[k] });
 				 try{
-					   res.send(menu.data);
+					   res.send(menu.data_menu);
 					 //res.send([]);
 					 
 				 }catch(e){

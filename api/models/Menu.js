@@ -9,6 +9,7 @@ module.exports = {
   autoCreatedAt: false,
   autoUpdatedAt: false,
   autoPK: false,
+  // connection: 'redis',
   attributes: {
         //  role:{
         //    type:'string'
@@ -24,11 +25,14 @@ module.exports = {
           require: true,
           unique: true
         },
-        name: {
-          columnName: "name",
-          type: "string",
+        data_menu: {
+          columnName: "data_menu",
+          type: "json",
           // require: true,
           // unique: true
+        },
+        role:{
+          type:"string"
         }
         
   }

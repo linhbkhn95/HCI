@@ -101,30 +101,30 @@
             var password = req.param('password');
 
             if (!email || !password) {
-              return res.json(401, {err: 'email and password required'});
+              return res.json(401, {err: 'Chưa nhập đủ thông tin'});
             }
 
-            Users.findOne({email: email}, function (err, user) {
+            User.findOne({email: email}, function (err, user) {
               if (!user) {
                 console.log(email);
-                return res.json(401, {err: 'invalid email or password'});
+                return res.json(401, {err: 'Sai mật khẩu hoặc email'});
               }
 
-              Users.comparePassword(password, user, function (err, valid) {
-                if (err) {
-                  return res.json(403, {err: 'forbidden'});
-                }
+              // User.comparePassword(password, user, function (err, valid) {
+              //   if (err) {
+              //     return res.json(403, {err: 'forbidden'});
+              //   }
 
-                if (!valid) {
-                  return res.json(401, {err: 'invalid email or password'});
+                if (user.password !=password) {
+                  return res.json(401, {err: 'Sai mật khẩu hoặc email'});
                 } else {
                 
-                  res.json({
-                    user: user,
-                    token: jwToken.issue({id : user.id,username:user.email })
-                  });
+                    res.json({
+                     
+                      token: jwToken.issue({id : user.id,role:user.role,username:user.name })
+                    });
                 }
               });
-            })
+            // })
           }
 };

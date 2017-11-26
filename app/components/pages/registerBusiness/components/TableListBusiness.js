@@ -3,7 +3,7 @@ import axios from 'axios';
 // Import React Table
 import ReactTable from "react-table";
 import "react-table/react-table.css";
-
+import {connect} from 'react-redux';
 import ModalDelay from './ModalDelay.js'
 //
 // const requestData = (pageSize, page, sorted, filtered) => {
@@ -11,7 +11,7 @@ import ModalDelay from './ModalDelay.js'
 var ListStatus = React.createClass({
     getInitialState(){
        return{
-           Data     : ["Đã duyệt","Đã hoàn thành","Chờ phê duyệt","Đã hủy"]
+           Data     : ["Đã duyệt","Chờ phê duyệt","Đã hủy"]
        }
     },
     componentDidMount(){
@@ -48,24 +48,24 @@ class TableDemo extends React.Component {
     super();
     this.state = {
       data: [
-          {
-              nameProject:"HCI", namePerson:"Linh Trịnh", totalCost:"170,000,000",status:"Chờ phê duyệt"
-          },
-          {
-            nameProject:"PTMNCN", namePerson:"Nhỏ ngọc", totalCost:"15,000,000", status:"Đã phê duyệt"
-         }, {
-            nameProject:"HCI", namePerson:"Linh Trịnh", totalCost:"170,000,000",status:"Đã hoàn thành"
-        },
-        {
-          nameProject:"PTMNCN", namePerson:"Nhỏ ngọc", totalCost:"15,000,000", status:"Đã hủy"
-       }
+      //     {
+      //         nameProject:"HCI", namePerson:"Linh Trịnh", totalCost:"170,000,000",status:"Chờ phê duyệt"
+      //     },
+      //     {
+      //       nameProject:"PTMNCN", namePerson:"Nhỏ ngọc", totalCost:"15,000,000", status:"Đã phê duyệt"
+      //    }, {
+      //       nameProject:"HCI", namePerson:"Linh Trịnh", totalCost:"170,000,000",status:"Đã hoàn thành"
+      //   },
+      //   {
+      //     nameProject:"PTMNCN", namePerson:"Nhỏ ngọc", totalCost:"15,000,000", status:"Đã hủy"
+      //  }
 
       ],
       showModalDelay:false,
       pages: null,
       page:1,
       pageSize:5,
-      loading: false
+      loading: true
     };
     this.fetchData = this.fetchData.bind(this);
   }
@@ -89,21 +89,21 @@ showModalDelay(){
     this.setState({ loading: false });
     var that =this;
     console.log(state);
-    console.log(state.filtered);
+    console.log(this.props.user);
     console.log(state.sorted);
+    
     // Request the data however you want.  Here, we'll use our mocked service we created earlier
-    //  axios.post('/userindex/search',{pagesize:state.pageSize,page:state.page+1,keySearch:state.filtered,sortSearch:state.sorted}
+     axios.post('/business/getlist',{user_id:this.props.user.id}
 
-    // ).then(res => {
-    //   console.log(res.data);
-    //   // Now just get the rows of data to your React Table (and update anything else like total pages or loading)
-    //   that.setState({
-    //     data: res.data.data,
-    //     pages: res.data.numPerPage,
-    //     loading: true
-    //   });
-    //   console.log(that.state);
-    // });
+    ).then(res => {
+      console.log(res.data);
+      // Now just get the rows of data to your React Table (and update anything else like total pages or loading)
+      that.setState({
+        data: res.data,
+        loading: false
+      });
+      console.log(that.state);
+    });
   }
  fn(shtk){
     console.log('xoa');
@@ -153,9 +153,9 @@ showModalDelay(){
             },
             {
               Header:props =><div  className=" header-react-table">Tên dự án</div>,
-              id: "shtk",
+              id: "business_id",
 
-              accessor: d => d.nameProject
+              accessor: d => d.nameproject
             },
          
             // {
@@ -165,7 +165,7 @@ showModalDelay(){
             // },
             {
               Header:props =><div className=" header-react-table">Người phụ trách</div>,
-              accessor: "namePerson"
+              accessor: "nameuser"
 
             },
             {
@@ -175,14 +175,14 @@ showModalDelay(){
                 <span>
 
                   <span style={{
-                    color: value === 'Đã hoàn thành' ? 'rgb(23, 255, 0)'
-                      : value === 'Đã phê duyệt' ? 'rgb(0, 255, 247)' :value==='Chờ phê duyệt' ? 'rgb(230, 207, 17)' 
+                    color:  
+                       value ==1 ? 'rgb(0, 255, 247)' :value>1 ? 'rgb(230, 207, 17)' 
                       : 'rgb(162, 42, 79)',
                     transition: 'all .3s ease'
                   }}>
                     &#x25cf;
                   </span> {
-                    value 
+                    value==1? 'Đã duyệt' :value>1? 'Chờ phê duyệt' : 'Đã hủy' 
                   }
                 </span>
               ),
@@ -264,5 +264,5 @@ showModalDelay(){
     );
   }
 }
-module.exports  = TableDemo;
+module.exports  = connect(function(state){return{user:state.auth.user}})(TableDemo);
     //      onChange={this.fetchData} // Request new data when things change

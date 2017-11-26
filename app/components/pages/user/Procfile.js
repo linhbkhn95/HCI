@@ -6,26 +6,29 @@ import Calendar from 'react-input-calendar'
 import DatePicker from 'react-date-picker';
 import {FormControl} from 'react-bootstrap';
 import ModalDelay from './components/ModalDelay.js'
-const getOptions = (input) => {
-    console.log(input);
-    return fetch(`/users/${input}.json`)
-      .then((response) => {
-        return response.json();
-      }).then((json) => {
-        return { options: json };
-      });
-  }
+import ChangPass from './components/ChangePass.js'
+import axios from 'axios';
+import {connect} from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 class RegisterBusiness extends React.Component{
     state = {
-        date: new Date(),
-        showModalDelay:false
+      
+        showModalDelay:false,
+        profile:{
+             
+        }
       }
      
-      access(){
+      access(user){
         console.log('dy');
       
-          
-        this.setState({showModalDelay:false});
+        this.state.profile.phone=user.phone;
+        this.state.profile.name = user.name;
+        this.setState({showModalDelay:false,profile:this.state.profile});
+        toast.info("Thay đổi thông tin thành công !", {
+            position: toast.POSITION.BOTTOM_CENTER
+          });
     }
     closeModalDelay(){
         this.setState({showModalDelay:false});
@@ -35,8 +38,20 @@ class RegisterBusiness extends React.Component{
         console.log('show modaldelay');
      //   this.props.dispatch(removeCart(productId));
      }
+     componentDidMount(){
+         var {user} =this.props;
+         var that=this;
+         axios.post('/user/get_profile',{user_id:user.id})
+         .then((res)=>{
+
+             that.setState({profile:res.data[0]});
+             
+         })
+     }
       onChange = date => this.setState({ date })
     render(){
+        var profile = this.state.profile;
+       
         return(
             <div>
             <div className="panel panel-default">
@@ -46,8 +61,8 @@ class RegisterBusiness extends React.Component{
                     <div className="browser-work">
                         <div className="col-md-12">
                              <div className="title-profile col-md-12">
-                                    <img style={{width:"50px",float:"left"}} src="../../images/avatar.jpg" />
-                                     <div style={{float:"left", fontSize:"22px",fontWeight:"bold",paddingLeft:"10px"}}>Trịnh đức Bảo Linh <div>(LTV-HN)</div>
+                                    <img style={{width:"50px",float:"left"}} src={"../../"+profile.avatar} />
+                                     <div style={{float:"left", fontSize:"22px",fontWeight:"bold",paddingLeft:"10px"}}>{profile.name} <div>{"( "+profile.role_name+" )"}</div>
 
                               </div>
                               <div className="pull-right col-md-1"><button onClick={this.showModalDelay.bind(this)} className="btn btn-default">Chỉnh sửa</button></div>
@@ -94,7 +109,7 @@ class RegisterBusiness extends React.Component{
                                                     Tên đầy đủ
                                                 </div>
                                                 <div style={{fontWeight:"bold"}} className="col-md-8">
-                                                     Trịnh đức Bảo Linh 
+                                                     {profile.name} 
                                                 </div>
                                             </div>
                                             <div className="col-md-12 content-module">
@@ -102,7 +117,7 @@ class RegisterBusiness extends React.Component{
                                                     Email
                                                 </div>
                                                 <div style={{fontWeight:"bold"}} className="col-md-8">
-                                                     trinhducbaolinh@gmail.com
+                                                     {profile.email}
                                                 </div>
                                             </div>
                                             <div className="col-md-12 content-module">
@@ -110,7 +125,7 @@ class RegisterBusiness extends React.Component{
                                                     Sdt
                                                 </div>
                                                 <div style={{fontWeight:"bold"}} className="col-md-8">
-                                                     01689952267
+                                                    { profile.phone}
                                                 </div>
                                             </div>
                                             <div className="col-md-12 content-module">
@@ -118,7 +133,7 @@ class RegisterBusiness extends React.Component{
                                                     Chức vụ
                                                 </div>
                                                 <div style={{fontWeight:"bold"}} className="col-md-8">
-                                                     LTV-HN
+                                                     {profile.role_name}
                                                 </div>
                                             </div>
                                         </div>
@@ -127,7 +142,17 @@ class RegisterBusiness extends React.Component{
                     </div>
                     
                 <hr style={{width:"100%"}} />
-                <ModalDelay show={this.state.showModalDelay} onHide={this.closeModalDelay.bind(this)} access ={this.access.bind(this)} />
+                <ToastContainer
+          position="top-left"
+          type="default"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          pauseOnHover
+        />
+                <ModalDelay  profile={profile} show={this.state.showModalDelay} onHide={this.closeModalDelay.bind(this)} access ={this.access.bind(this)} />
+                {/* <ChangPass show="true" onHide={this.closeModalDelay.bind(this)} access ={this.access.bind(this)} /> */}
 
                 {/* <div className="col-md-12"><div className="pull-right"><button style={{marginRight:"10px"}} className="btn btn-primary">Gửi đăng kí</button><button  className="btn btn-defalut">Thoát</button></div>   </div> */}
               </div>
@@ -137,4 +162,6 @@ class RegisterBusiness extends React.Component{
     }
 }
 
-module.exports = RegisterBusiness;
+module.exports = connect(function(state){return{
+    user:state.auth.user
+}})(RegisterBusiness);
