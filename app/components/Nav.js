@@ -132,5 +132,5 @@ class Nav extends React.Component{
 
 
 module.exports = connect(function (state){
-  return {isAuthenticated: state.authenticate.isAuthenticated,user:state.auth.user};
+  return {isAuthenticated: state.auth.isAuthenticated,user:state.auth.user};
 })(Nav);

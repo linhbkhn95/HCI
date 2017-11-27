@@ -1,6 +1,7 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {loadMenu} from 'actionMenu';
 
 import setAuthorizationToken from 'app/utils/setAuthorizationToken.js';
 import {setCurrentUser} from 'app/action/authActions.js';
@@ -35,7 +36,7 @@ class Login extends React.Component{
          setAuthorizationToken(res.data.token);
          dispatch(setCurrentUser(jwtDecode(res.data.token)));
        //  dispatch(showNotifi(""));
-         console.log(jwtDecode(res.data.token));
+         console.log(jwtDecode(res.data.token).role);
          console.log("dang nhap ok");
      //    console.log(that.refs.phone.getVal+' ' +that.refs.password.getValue());
       //   dispatch(login(that.refs.phone.value));
@@ -44,12 +45,13 @@ class Login extends React.Component{
 
         //  dispatch(login(res.data.user.email));
         //  dispatch(authenticate());
-     //     axios.get('/session/getMenu')
-     //     .then(res => {
-     //       console.log(res.data);
-     //         dispatch(loadMenu(res.data));
-     //     })
-     //     .catch(err => console.log(err));
+         let role = jwtDecode(res.data.token).role;
+         axios.post('/session/getMenu',{role:role})
+         .then(res => {
+           console.log(res.data);
+             dispatch(loadMenu(res.data));
+         })
+         .catch(err => console.log(err));
      //   }
      //   else{
 
