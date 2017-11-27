@@ -176,13 +176,13 @@ showModalDelay(){
 
                   <span style={{
                     color:  
-                       value ==1 ? 'rgb(0, 255, 247)' :value>1 ? 'rgb(230, 207, 17)' 
+                       value ==1 ? 'rgb(0, 255, 247)' :value==0 ? 'rgb(230, 207, 17)':value==2 ? 'rgb(230, 207, 17)'
                       : 'rgb(162, 42, 79)',
                     transition: 'all .3s ease'
                   }}>
                     &#x25cf;
                   </span> {
-                    value==1? 'Đã duyệt' :value>1? 'Chờ phê duyệt' : 'Đã hủy' 
+                    value==1? 'Đã duyệt' :value==0? 'Chờ phê duyệt':value==2?'Chờ phê duyệt' : 'Đã hủy' 
                   }
                 </span>
               ),

@@ -31,17 +31,17 @@ module.exports.connections = {
   localDiskDb: {
     adapter: 'sails-disk'
   },
-  redis: {
-    adapter: "sails-redis",
-    port: 6379,
-    host: 'localhost'
-  },
+  // redis: {
+  //   adapter: "sails-redis",
+  //   port: 6379,
+  //   host: 'localhost'
+  // },
   mysql: {
     adapter    : 'sails-mysql',
     host      : 'localhost',
     port      : 3306,
     user      : 'root',
-    password  : '1234',
+    password  : 'ngoc',
     database  : 'quanlycongtac'
   }
   /***************************************************************************

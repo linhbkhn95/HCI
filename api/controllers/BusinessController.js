@@ -12,14 +12,14 @@ module.exports = {
           var data = req.body
           console.log(data);
           let obj={};
-          obj.project_id = data.project_id;
+          obj.project_id = parseInt(data.project_id);
           obj.date_start = data.date_start;
           obj.date_finish = data.date_finish;
           obj.target = data.target;
           obj.address = data.address;
           obj.user_id = data.user_id;
           obj.cost = data.cost;
-          obj.status = 1;
+          obj.status = 0;
           Business.create(obj).exec((err,business)=>{
                 if(err){
                     return res.send('error');
@@ -28,7 +28,7 @@ module.exports = {
                 // var data = data.listperson.map((person)=>{
                 //     return Userbusiness.add(person.==)
                 // })
-                res.send(business);
+                return res.send(business);
           })
     },
     getlist:function(req,res){

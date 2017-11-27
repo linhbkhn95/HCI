@@ -60,7 +60,7 @@ class RegisterBusiness extends React.Component{
  access(){
     console.log('dy');
   
-      
+    this.registerBusiness();
     this.setState({showModalDelay:false});
 }
 closeModalDelay(){

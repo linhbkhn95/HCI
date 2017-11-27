@@ -43,6 +43,9 @@ module.exports = {
           },
           date_finish:{
             type:"text"
+          },
+          project_id:{
+            type:'integer'
           }
   
     }
